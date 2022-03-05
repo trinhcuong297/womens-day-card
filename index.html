@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://cdn.bootcss.com/typed.js/2.0.5/typed.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: pink;
+        }
+
+        .text {
+            font-family: 'JetBrains Mono';
+            font-style: italic;
+            display: inline-block;
+            position: relative;
+            font-size: 5vw;
+            line-height: 1em;
+            font-weight: bold;
+            color: rgb(245, 245, 245);
+        }
+
+        .text2 {
+            font-family: 'JetBrains Mono';
+            font-style: italic;
+            display: inline-block;
+            position: relative;
+            font-size: 5vw;
+            line-height: 1em;
+            font-weight: bold;
+            color: rgb(245, 245, 245);
+            animation: typedjsBlink 0.8s infinite;
+        }
+        .name {
+            font-family: 'JetBrains Mono';
+            font-style: normal;
+            position: absolute;
+            right: 10vw;
+            bottom: 30vh;
+            font-size: 5vw;
+            line-height: 1em;
+            font-weight: bold;
+            color: rgb(245, 245, 245);
+        }
+        /* @keyframes typedjsBlink {
+            50% {
+                opacity: 0.0;
+            }
+        } */
+        @keyframes typedjsBlink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <!-- <style type="text/css" data-typed-js-css="true">
+        .typed-cursor{
+          opacity: 1;
+        }
+        .typed-cursor.typed-cursor--blink{
+          animation: typedjsBlink 0.7s infinite;
+          -webkit-animation: typedjsBlink 0.7s infinite;
+                  animation: typedjsBlink 0.7s infinite;
+        }
+      </style> -->
+</head>
+
+<body>
+    <h1>
+        <span class="text"></span>
+        <span class="text2" id="blink">_</span>
+    </br>
+    <span class="name">--Hu Suhan</span>
+    </h1>
+    <script>
+        const text = document.querySelector('.text');
+        const txt = ["🎉Happy Women's Day!🎉", "🎉Wish you the best!🎉"];
+
+        var index = 0;
+        var id = 0;
+        var backToBegin = false;
+        var blink = document.createElement('span');
+        blink.id = 'blink';
+        blink.className = "text2";
+        blink.textContent = "_";
+        setInterval(function () {
+
+            if (!backToBegin) {
+                text.textContent = txt[id].slice(0, ++index);
+                // text.appendChild(blink);
+                // console.log(index);
+            }
+            else {
+                text.textContent = txt[id].slice(0, index--);
+                // text.appendChild(blink);
+                // console.log(index);
+            }
+
+            if (index == txt[id].length) {
+                window.setTimeout(function () { backToBegin = true; }, 1400);
+            }
+            else if (index < 0) {
+                index = 0;
+                backToBegin = false;
+                id++;
+                if (id >= txt.length) {
+                    id = 0;
+                }
+            }
+
+        }, 200)
+
+    </script>
+</body>
+
+</html>
